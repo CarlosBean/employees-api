@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EmployeeCardComponent } from '../employee-card/employee-card.component';
 import { EmployeesService } from '../employees.service';
+import { catchError, EMPTY, Subject } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-employees-list',
@@ -11,7 +13,15 @@ import { EmployeesService } from '../employees.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmployeesListComponent {
-  employees$ = this.employeesService.getAllEmployees();
+  errorTrigger$ = new Subject<HttpErrorResponse>();
+  errorAction$ = this.errorTrigger$.asObservable();
+
+  employees$ = this.employeesService.getAllEmployees().pipe(
+    catchError((err: HttpErrorResponse) => {
+      this.errorTrigger$.next(err);
+      return EMPTY;
+    })
+  );
 
   constructor(private employeesService: EmployeesService) {}
 }
