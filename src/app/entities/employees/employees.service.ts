@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
 import { Employee } from './employee.model';
 
 const BASE_URL = environment.API_URL;
-const URI = BASE_URL + '/employees';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ export class EmployeesService {
   constructor(private http: HttpClient) {}
 
   getAllEmployees(): Observable<Employee[]> {
-    return this.http.get<ResponseApi<Employee[]>>(URI).pipe(
+    return this.http.get<ResponseApi<Employee[]>>(BASE_URL + '/employees').pipe(
       map(result => {
         return result.data.map(x => {
           x.employee_age = Number(x.employee_age);
@@ -28,7 +27,7 @@ export class EmployeesService {
 
   getEmployee(id: string): Observable<Employee> {
     return this.http
-      .get<ResponseApi<Employee>>(`${URI}/${id}`)
+      .get<ResponseApi<Employee>>(`${BASE_URL}/employee/${id}`)
       .pipe(map(result => result.data));
   }
 }
