@@ -1,6 +1,6 @@
-type Status = 'success' | 'error';
+export type ResponseStatus = 'success' | 'error';
 
 export interface ResponseApi<Type> {
-  status: Status;
-  data?: Type;
+  status: ResponseStatus;
+  data: Type;
 }
