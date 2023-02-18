@@ -1,0 +1,57 @@
+<figure
+  *ngIf="data"
+  class="flex items-center bg-gray-50 rounded-3xl shadow-lg md:flex-row md:max-w-xl dark:bg-slate-800 relative"
+>
+  <ng-container
+    *ngIf="data.employee_age > 30 ? images.old : images.young as image"
+  >
+    <img
+      class="w-20 mx-6 inset-0 object-cover rounded-3xl md:rounded-none md:rounded-l-3xl md:w-32 md:m-0"
+      [ngSrc]="image.name"
+      [width]="image.width"
+      [height]="image.height"
+      priority
+      alt=""
+    />
+  </ng-container>
+  <figcaption
+    class="flex-1 flex flex-col justify-between p-4 pl-0 leading-normal space-y-2 md:pl-4"
+  >
+    <h5
+      class="text-lg font-bold tracking-tight text-slate-600 dark:text-gray-50"
+    >
+      {{ data.employee_name }}
+    </h5>
+
+    <p class="font-normal text-slate-700 dark:text-slate-400">
+      Age: <span class="font-medium">{{ data.employee_age }} years</span>
+    </p>
+
+    <p class="font-normal text-slate-700 dark:text-slate-400">
+      Salary:
+      <span class="font-medium">{{
+        data.employee_salary | currency : '$' : 'symbol' : '3.0'
+      }}</span>
+    </p>
+  </figcaption>
+  <button
+    class="font-bold bg-blue-400 rounded-full w-8 h-8 absolute top-0 right-0 m-4 hover:bg-blue-300"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="28"
+      height="28"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      class="stroke-gray-50 dark:stroke-slate-800"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <line x1="15" y1="16" x2="19" y2="12" />
+      <line x1="15" y1="8" x2="19" y2="12" />
+    </svg>
+  </button>
+</figure>
