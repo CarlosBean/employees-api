@@ -10,6 +10,13 @@ const routes: Routes = [
         './entities/employees/employees-list/employees-list.component'
       ).then(mod => mod.EmployeesListComponent),
   },
+  {
+    path: 'employees/:id',
+    loadComponent: () =>
+      import(
+        './entities/employees/employee-detail/employee-detail.component'
+      ).then(mod => mod.EmployeeDetailComponent),
+  },
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import { EmployeeCardComponent } from '../employee-card/employee-card.component'
 import { EmployeesService } from '../employees.service';
 import { catchError, EMPTY, Subject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees-list',
@@ -23,5 +24,12 @@ export class EmployeesListComponent {
     })
   );
 
-  constructor(private employeesService: EmployeesService) {}
+  constructor(
+    private employeesService: EmployeesService,
+    private router: Router
+  ) {}
+
+  goToDetail(id: string) {
+    this.router.navigate([`/employees/${id}`]);
+  }
 }

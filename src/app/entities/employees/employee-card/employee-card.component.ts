@@ -14,14 +14,14 @@ export class EmployeeCardComponent {
 
   images = {
     young: {
-      name: 'photo-1535295972055-1c762f4483e5?w=400&h=400&fit=crop',
-      width: 400,
-      height: 400,
+      name: 'photo-1535295972055-1c762f4483e5?w=200&h=200&fit=crop',
+      width: 200,
+      height: 200,
     },
     old: {
-      name: 'photo-1552641156-93ea2a5f78e2?w=400&h=400&fit=crop',
-      width: 400,
-      height: 400,
+      name: 'photo-1552641156-93ea2a5f78e2?w=200&h=200&fit=crop',
+      width: 200,
+      height: 200,
     },
   };
 }
