@@ -1,0 +1,91 @@
+<div
+  class="max-w-4xl m-auto flex gap-8 text-slate-600 dark:text-gray-50 flex-col md:flex-row"
+>
+  <ng-container *ngIf="employee$ | async as employee">
+    <div
+      class="flex-1 relative h-auto flex"
+      *ngIf="employee.employee_age > 30 ? images.old : images.young as image"
+    >
+      <img
+        class="w-2/3 m-auto rounded-full"
+        [ngSrc]="image.name"
+        [width]="image.width"
+        [height]="image.height"
+        priority
+        alt=""
+      />
+
+      <img
+        src="assets/svg/blob-1.svg"
+        alt=""
+        class="w-1/5 absolute top-0 left-0"
+      />
+
+      <img
+        src="assets/svg/blob-2.svg"
+        alt=""
+        class="w-1/6 absolute bottom-0 right-0"
+      />
+
+      <button
+        (click)="goBack()"
+        class="w-12 h-12 cursor-pointer bg-teal-400 text-slate-800 rounded-full absolute bottom-0 left-0 grid place-content-center hover:bg-teal-300"
+      >
+        <span class="font-bold tracking-tight">
+          <img src="assets/svg/arrow-back.svg" alt="" />
+        </span>
+      </button>
+    </div>
+
+    <div
+      class="flex-1 space-y-3 p-4 pb-8 bg-gray-50 rounded-xl dark:bg-slate-800"
+    >
+      <h5 class="mb-6 text-3xl font-bold tracking-tight text-teal-400">
+        Employee Detail
+      </h5>
+      <div>
+        <div class="capitalize">full name:</div>
+        <p class="font-bold tracking-tight text-xl">
+          {{ employee.employee_name }}
+        </p>
+      </div>
+      <div>
+        <div class="capitalize">id:</div>
+        <p class="font-bold text-xl">
+          {{ employee.id }}
+        </p>
+      </div>
+      <div>
+        <div class="capitalize">salary:</div>
+        <p class="font-bold text-xl">
+          {{ employee.employee_salary | currency : '$' : 'symbol' : '3.0' }}
+        </p>
+      </div>
+      <div>
+        <div class="capitalize">age:</div>
+        <p class="font-bold text-xl">{{ employee.employee_age }} years</p>
+      </div>
+      <div>
+        <div class="capitalize">has profile image:</div>
+        <p class="font-bold text-xl">
+          {{ employee.profile_image ? 'Yes' : 'No' }}
+        </p>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<ng-container *ngIf="errorAction$ | async as err">
+  <h5 class="mb-6 text-3xl font-bold tracking-tight text-teal-400">
+    Employee Detail
+  </h5>
+  <div
+    class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-100 dark:bg-slate-800 dark:text-red-400"
+    role="alert"
+  >
+    <div>
+      <span class="font-medium">Error {{ err.status }} has happened!</span>
+      {{ err.error.message }}
+    </div>
+  </div>
+</ng-container>
