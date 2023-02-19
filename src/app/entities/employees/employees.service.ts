@@ -28,6 +28,13 @@ export class EmployeesService {
   getEmployee(id: string): Observable<Employee> {
     return this.http
       .get<ResponseApi<Employee>>(`${BASE_URL}/employee/${id}`)
-      .pipe(map(result => result.data));
+      .pipe(
+        map(result => {
+          const x = result.data;
+          x.employee_age = Number(x.employee_age);
+          x.employee_salary = Number(x.employee_salary);
+          return x;
+        })
+      );
   }
 }
