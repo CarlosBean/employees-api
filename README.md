@@ -1,6 +1,9 @@
 # EmployeesApi
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+This project uses Angular version 15.1.6 and Tailwind 3.2.7, also this project consumes dummy data from https://dummy.restapiexample.com
+
+![image](https://user-images.githubusercontent.com/28544358/219912246-8ab36183-d12c-48a6-b220-a1e823be5442.png)
+![image](https://user-images.githubusercontent.com/28544358/219912015-c58f4e0d-76c9-4c3e-858b-cf045a4a8dad.png)
 
 ## Development server
 
